@@ -1,12 +1,14 @@
-const { Pool } = require("pg");
+// const { Pool } = require("pg");
 const { nanoid } = require("nanoid");
 const InvariantError = require("../../exceptions/InvariantError");
 const NotFoundError = require("../../exceptions/NotFoundError");
 const { mapDBToModel } = require("../../utils/helpers");
+const pool = require("../../db");
 
 class NotesService {
   constructor() {
-    this._pool = new Pool();
+    // this._pool = new Pool();
+    this._pool = pool;
   }
 
   async addNote({ title, body, tags }) {
