@@ -55,7 +55,6 @@ class NotesHandler {
         data: { notes },
       })
       .code(200);
-    // return response(h, 200, "success", "", notes);
   }
 
   async getNoteByIdHandler(request, h) {
