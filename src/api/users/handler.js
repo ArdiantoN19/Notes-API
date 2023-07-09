@@ -56,6 +56,32 @@ class UsersHandler {
       );
     }
   }
+
+  async getUsersByUsernameHandler(request, h) {
+    try {
+      const { username = "" } = request.query;
+      const users = await this._service.getUsersByUsername(username);
+      // return h.response({ status: "success", data: { users } }).code(200);
+      return {
+        status: "success",
+        data: {
+          users,
+        },
+      };
+    } catch (error) {
+      if (error instanceof ClientError) {
+        return response(h, error.statusCode, "fail", error.message);
+      }
+
+      console.error(error);
+      return response(
+        h,
+        500,
+        "fail",
+        "Maaf, terjadi kesalahan pada server kami"
+      );
+    }
+  }
 }
 
 module.exports = UsersHandler;
